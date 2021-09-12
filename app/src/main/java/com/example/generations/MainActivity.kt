@@ -1,4 +1,4 @@
-package com.example.checkgeneration
+package com.example.generations
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
-import com.example.checkgeneration.databinding.ActivityMainBinding
+import com.example.generations.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 

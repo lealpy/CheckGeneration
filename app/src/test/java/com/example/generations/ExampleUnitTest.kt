@@ -1,4 +1,4 @@
-package com.example.checkgeneration
+package com.example.generations
 
 import org.junit.Test
 
