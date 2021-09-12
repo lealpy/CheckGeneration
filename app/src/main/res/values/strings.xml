@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Поколения</string>
-    <string name="boomer_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению бэби-бумеров</string>
-    <string name="x_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению X</string>
-    <string name="y_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению Y (миллениалам)</string>
-    <string name="z_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению Z (зумерам)</string>
-    <string name="unknown_gen">Человек, рожденный $dayOfBirth.${monthofBirth}.$yearOfBirth, не относится к поколениям бэби-бумеров, X, Y, Z</string>
+    <string name="boomer_gen">Человек, рожденный %1$d.%2$s.%3$d, относится к поколению бэби-бумеров</string>
+    <string name="x_gen">Человек, рожденный %1$d %2$s %3$d, относится к поколению X</string>
+    <string name="y_gen">Человек, рожденный %1$d %2$s %3$d, относится к поколению Y (миллениалам)</string>
+    <string name="z_gen">Человек, рожденный %1$d %2$s %3$d, относится к поколению Z (зумерам)</string>
+    <string name="unknown_gen">Человек, рожденный %1$d.%2$s.%3$d, не относится к поколениям бэби-бумеров, X, Y, Z</string>
 
     <string name="jan">января</string>
     <string name="feb">февраля</string>

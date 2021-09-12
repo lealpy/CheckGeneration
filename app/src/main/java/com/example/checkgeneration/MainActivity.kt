@@ -64,36 +64,31 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         checkGeneration(initialYear, initialMonth, initialDay)
     }
 
-    private fun checkGeneration(yearOfBirth: Int, monthofBirth : Int, dayOfBirth : Int) {
+    private fun checkGeneration(yearOfBirth: Int, monthOfBirth : Int, dayOfBirth : Int) {
 
         when (yearOfBirth) {
             in 1946..1964 -> {
-                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению бэби-бумеров"
-                //getString(R.string.boomer_gen)
+                binding.tvGenerationName.text = String.format(getString(R.string.boomer_gen), dayOfBirth, monthToText(monthOfBirth), yearOfBirth)
                 binding.tvGenerationInfo.text = getString(R.string.boomer_info)
                 binding.ivGenerationPicture.setImageResource(R.drawable.boomer_gen)
             }
             in 1965..1980 -> {
-                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению X"
-                //getString(R.string.x_gen)
+                binding.tvGenerationName.text = String.format(getString(R.string.x_gen), dayOfBirth, monthToText(monthOfBirth), yearOfBirth)
                 binding.tvGenerationInfo.text = getString(R.string.x_info)
                 binding.ivGenerationPicture.setImageResource(R.drawable.x_gen)
             }
             in 1981..1996 -> {
-                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Y (миллениалам)"
-                //getString(R.string.y_gen)
+                binding.tvGenerationName.text = String.format(getString(R.string.y_gen), dayOfBirth, monthToText(monthOfBirth), yearOfBirth)
                 binding.tvGenerationInfo.text = getString(R.string.y_info)
                 binding.ivGenerationPicture.setImageResource(R.drawable.y_gen)
             }
             in 1997..2012 -> {
-                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Z (зумерам)"
-                //getString(R.string.z_gen)
+                binding.tvGenerationName.text = String.format(getString(R.string.z_gen), dayOfBirth, monthToText(monthOfBirth), yearOfBirth)
                 binding.tvGenerationInfo.text = getString(R.string.z_info)
                 binding.ivGenerationPicture.setImageResource(R.drawable.z_gen)
             }
             else -> {
-                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, не относится к поколениям бэби-бумеров, X, Y, Z"
-                //getString(R.string.unknown_gen)
+                binding.tvGenerationName.text = String.format(getString(R.string.unknown_gen), dayOfBirth, monthToText(monthOfBirth), yearOfBirth)
                 binding.tvGenerationInfo.text = ""
                 binding.ivGenerationPicture.setImageResource(R.drawable.unknown_gen)
             }
@@ -102,8 +97,8 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         binding.ivGenerationPicture.visibility = View.VISIBLE
     }
 
-    private fun monthToText (monthofBirth : Int) : String {
-        return when (monthofBirth) {
+    private fun monthToText (monthIndex : Int) : String {
+        return when (monthIndex) {
             0 -> getString(R.string.jan)
             1 -> getString(R.string.feb)
             2 -> getString(R.string.mar)
