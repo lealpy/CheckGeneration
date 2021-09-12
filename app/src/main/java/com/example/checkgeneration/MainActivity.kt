@@ -5,45 +5,56 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import com.example.checkgeneration.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
+    companion object {
+        private const val DAY_CONST = 1
+        private const val MONTH_CONST = 0
+        private const val YEAR_CONST = 2000
+
+        private const val DAY_KEY = "savedDayKey"
+        private const val MONTH_KEY = "savedMonthKey"
+        private const val YEAR_KEY = "savedYearKey"
+
+        private const val FILE_NAME = "settings"
+    }
+
     lateinit var binding : ActivityMainBinding
     private lateinit var prefs: SharedPreferences
-    var initialDay = 1
-    var initialMonth = 0
-    var initialYear = 2000
+
+    private var initialDay = DAY_CONST
+    private var initialMonth = MONTH_CONST
+    private var initialYear = YEAR_CONST
 
     override fun onPause() {
         super.onPause()
         val editor = prefs.edit()
-        editor.putInt("savedDay", initialDay).apply()
-        editor.putInt("savedMonth", initialMonth).apply()
-        editor.putInt("savedYear", initialYear).apply()
+        editor.putInt(DAY_KEY, initialDay).apply()
+        editor.putInt(MONTH_KEY, initialMonth).apply()
+        editor.putInt(YEAR_KEY, initialYear).apply()
     }
 
     override fun onResume() {
         super.onResume()
-        if (prefs.contains("savedDay") && prefs.contains("savedMonth") && prefs.contains("savedYear")) {
-            initialDay = prefs.getInt("savedDay", 1)
-            initialMonth = prefs.getInt("savedMonth", 0)
-            initialYear = prefs.getInt("savedYear", 2000)
-            checkGeneration(initialYear, initialMonth, initialDay)
-        }
+        initialDay = prefs.getInt(DAY_KEY, DAY_CONST)
+        initialMonth = prefs.getInt(MONTH_KEY, MONTH_CONST)
+        initialYear = prefs.getInt(YEAR_KEY, YEAR_CONST)
+        checkGeneration(initialYear, initialMonth, initialDay)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        prefs =
-            getSharedPreferences("settings", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     }
 
-    fun onClick (view: View) {
+    fun onClickCalendar (view: View) {
         DatePickerDialog(this,this, initialYear, initialMonth, initialDay).show()
     }
 
@@ -54,45 +65,45 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         checkGeneration(initialYear, initialMonth, initialDay)
     }
 
-    fun checkGeneration(yearOfBirth: Int, monthofBirth : Int, dayOfBirth : Int) {
+    private fun checkGeneration(yearOfBirth: Int, monthofBirth : Int, dayOfBirth : Int) {
 
         when (yearOfBirth) {
             in 1946..1964 -> {
-                binding.textView1.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению бэби-бумеров"
+                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению бэби-бумеров"
                 //getString(R.string.boomer_gen)
-                binding.textView2.text = getString(R.string.boomer_info)
-                binding.imageView.setImageResource(R.drawable.boomer_gen)
+                binding.tvGenerationInfo.text = getString(R.string.boomer_info)
+                binding.ivGenerationPicture.setImageResource(R.drawable.boomer_gen)
             }
             in 1965..1980 -> {
-                binding.textView1.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению X"
+                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению X"
                 //getString(R.string.x_gen)
-                binding.textView2.text = getString(R.string.x_info)
-                binding.imageView.setImageResource(R.drawable.x_gen)
+                binding.tvGenerationInfo.text = getString(R.string.x_info)
+                binding.ivGenerationPicture.setImageResource(R.drawable.x_gen)
             }
             in 1981..1996 -> {
-                binding.textView1.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Y (миллениалам)"
+                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Y (миллениалам)"
                 //getString(R.string.y_gen)
-                binding.textView2.text = getString(R.string.y_info)
-                binding.imageView.setImageResource(R.drawable.y_gen)
+                binding.tvGenerationInfo.text = getString(R.string.y_info)
+                binding.ivGenerationPicture.setImageResource(R.drawable.y_gen)
             }
             in 1997..2012 -> {
-                binding.textView1.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Z (зумерам)"
+                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, относится к поколению Z (зумерам)"
                 //getString(R.string.z_gen)
-                binding.textView2.text = getString(R.string.z_info)
-                binding.imageView.setImageResource(R.drawable.z_gen)
+                binding.tvGenerationInfo.text = getString(R.string.z_info)
+                binding.ivGenerationPicture.setImageResource(R.drawable.z_gen)
             }
             else -> {
-                binding.textView1.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, не относится к поколениям бэби-бумеров, X, Y, Z"
+                binding.tvGenerationName.text = "Человек, рожденный $dayOfBirth ${monthToText(monthofBirth)} $yearOfBirth года, не относится к поколениям бэби-бумеров, X, Y, Z"
                 //getString(R.string.unknown_gen)
-                binding.textView2.text = ""
-                binding.imageView.setImageResource(R.drawable.unknown_gen)
+                binding.tvGenerationInfo.text = ""
+                binding.ivGenerationPicture.setImageResource(R.drawable.unknown_gen)
             }
         }
-        binding.textView1.visibility = View.VISIBLE
-        binding.imageView.visibility = View.VISIBLE
+        binding.tvGenerationName.visibility = View.VISIBLE
+        binding.ivGenerationPicture.visibility = View.VISIBLE
     }
 
-    fun monthToText (monthofBirth : Int) : String {
+    private fun monthToText (monthofBirth : Int) : String {
         return when (monthofBirth) {
             0 -> getString(R.string.jan)
             1 -> getString(R.string.feb)

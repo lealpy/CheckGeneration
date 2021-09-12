@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CheckGeneration</string>
+    <string name="app_name">Поколения</string>
     <string name="boomer_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению бэби-бумеров</string>
     <string name="x_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению X</string>
     <string name="y_gen">Человек, рожденный $dayOfBirth.${monthofBirth+1}.$yearOfBirth, относится к поколению Y (миллениалам)</string>
