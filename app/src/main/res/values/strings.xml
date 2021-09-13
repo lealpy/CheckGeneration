@@ -7,6 +7,9 @@
     <string name="z_gen">Человек, рожденный %1$d %2$s %3$d, относится к поколению Z (зумерам)</string>
     <string name="unknown_gen">Человек, рожденный %1$d.%2$s.%3$d, не относится к поколениям бэби-бумеров, X, Y, Z</string>
 
+    <string name="btn_date_picker_text">Коснитесь для выбора даты рождения</string>
+
+
     <string name="jan">января</string>
     <string name="feb">февраля</string>
     <string name="mar">марта</string>
