@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.checkgeneration",
+  "applicationId": "com.example.generations",
   "variantName": "release",
   "elements": [
     {
